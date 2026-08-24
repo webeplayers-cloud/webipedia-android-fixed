@@ -1,0 +1,25 @@
+/*
+ * Temporary Gradle init script for the Webipedia Android project.
+ *
+ * Run from the Android project root:
+ *
+ *   gradle --init-script fix-kotlin-duplicates.gradle assembleRelease --no-daemon
+ *
+ * This aligns Kotlin stdlib artifacts to 1.8.22 and prevents old 1.6.x
+ * jdk7/jdk8 variants from being selected.
+ */
+allprojects {
+    configurations.configureEach {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.group == "org.jetbrains.kotlin") {
+                def module = details.requested.name
+                if (module == "kotlin-stdlib-jdk7" ||
+                    module == "kotlin-stdlib-jdk8" ||
+                    module == "kotlin-stdlib") {
+                    details.useVersion("1.8.22")
+                    details.because("Align Kotlin stdlib variants to prevent duplicate classes")
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,5 @@
+Webipedia Android - Release Build Fix
+
+Fixed: duplicate Kotlin stdlib classes caused by legacy kotlin-stdlib-jdk7/jdk8 artifacts being resolved alongside kotlin-stdlib.
+
+The app is a Java-only Android app; no Kotlin dependency is required directly. The app module now excludes the legacy JDK7/JDK8 stdlib modules from all configurations.

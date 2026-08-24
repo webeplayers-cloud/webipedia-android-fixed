@@ -1,0 +1,2 @@
+This project already contains the Kotlin duplicate-class fix in app/build.gradle.
+Legacy org.jetbrains.kotlin:kotlin-stdlib-jdk7 and kotlin-stdlib-jdk8 are excluded from all app configurations.
